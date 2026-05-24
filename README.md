@@ -1,6 +1,6 @@
 # Automação de Testes de API REST
 
-Projeto de testes automatizados para a [BrasilAPI](https://brasilapi.com.br), escrito em Python com Pytest e httpx.
+Projeto de testes automatizados para a [ServeRest](https://serverest.dev), escrito em Python com Pytest e httpx.
 
 ---
 
@@ -34,13 +34,13 @@ py -m pip install -r requirements.txt
 
 ### 3. Configure as variáveis de ambiente
 
-Copie o arquivo de exemplo e preencha com os valores reais:
+Copie o arquivo de exemplo:
 
 ```
 cp .env.example .env
 ```
 
-O arquivo `.env` já vem com o valor correto para a BrasilAPI. Não é necessário alterar nada.
+O arquivo `.env` já vem com o valor correto para a ServeRest. Não é necessário alterar nada.
 
 ### 4. Rode os testes
 
@@ -52,13 +52,15 @@ py -m pytest -v
 
 ## O que é testado
 
-Os testes cobrem o endpoint `/api/banks/v1` da BrasilAPI:
+Os testes cobrem o endpoint `/usuarios` da ServeRest, com os quatro métodos HTTP:
 
-| Teste | O que verifica |
-|-------|---------------|
-| `test_listar_bancos_retorna_lista` | GET /api/banks/v1 retorna lista não vazia com status 200 |
-| `test_buscar_banco_existente` | GET /api/banks/v1/1 retorna o Banco do Brasil com status 200 |
-| `test_banco_inexistente_retorna_404` | GET /api/banks/v1/99999 retorna status 404 |
+| Teste | Método | O que verifica |
+|-------|--------|---------------|
+| `test_listar_usuarios` | GET | lista de usuários retorna status 200 e formato correto |
+| `test_criar_usuario` | POST | criação de usuário retorna status 201 e mensagem de sucesso |
+| `test_buscar_usuario_existente` | GET | busca por ID retorna o usuário correto |
+| `test_atualizar_usuario` | PUT | atualização retorna mensagem de sucesso |
+| `test_deletar_usuario` | DELETE | exclusão retorna mensagem de sucesso |
 
 ---
 
@@ -66,13 +68,16 @@ Os testes cobrem o endpoint `/api/banks/v1` da BrasilAPI:
 
 ```
 test-api/
+├── .github/
+│   └── workflows/
+│       └── tests.yml         # pipeline do GitHub Actions
 ├── tests/
-│   ├── conftest.py       # fixture com o cliente HTTP compartilhado
-│   └── test_banks.py     # testes do endpoint de bancos
-├── .env.example          # modelo de variáveis de ambiente
-├── .gitignore            # arquivos ignorados pelo Git
-├── requirements.txt      # dependências do projeto
-└── README.md             # este arquivo
+│   ├── conftest.py           # fixture com o cliente HTTP compartilhado
+│   └── test_usuarios.py      # testes do endpoint de usuários
+├── .env.example              # modelo de variáveis de ambiente
+├── .gitignore                # arquivos ignorados pelo Git
+├── requirements.txt          # dependências do projeto
+└── README.md                 # este arquivo
 ```
 
 ---
@@ -80,11 +85,13 @@ test-api/
 ## Interpretando o resultado dos testes
 
 ```
-tests/test_banks.py::test_listar_bancos_retorna_lista PASSED
-tests/test_banks.py::test_buscar_banco_existente PASSED
-tests/test_banks.py::test_banco_inexistente_retorna_404 PASSED
+tests/test_usuarios.py::test_listar_usuarios PASSED
+tests/test_usuarios.py::test_criar_usuario PASSED
+tests/test_usuarios.py::test_buscar_usuario_existente PASSED
+tests/test_usuarios.py::test_atualizar_usuario PASSED
+tests/test_usuarios.py::test_deletar_usuario PASSED
 
-3 passed in 1.23s
+5 passed in 2.34s
 ```
 
 - `PASSED` — teste passou, comportamento está correto
