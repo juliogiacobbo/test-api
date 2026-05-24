@@ -1,0 +1,14 @@
+# Dependências do projeto de automação de testes de API
+# Para instalar tudo de uma vez: pip install -r requirements.txt
+
+# pytest: o framework que descobre e executa os testes
+# qualquer função que começa com test_ será rodada automaticamente
+pytest==8.3.5
+
+# httpx: a biblioteca que faz as chamadas HTTP (GET, POST, etc.)
+# é o nosso "Postman programático" — usamos ela dentro dos testes
+httpx==0.28.1
+
+# python-dotenv: lê o arquivo .env e carrega as variáveis de ambiente
+# assim a URL da API fica configurável sem mudar o código
+python-dotenv==1.1.0
