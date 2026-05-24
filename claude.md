@@ -213,6 +213,19 @@ Para configurar `BASE_URL` no GitHub:
 
 ---
 
+## Validação de aprendizado (faça antes de avançar de fase)
+
+Antes de iniciar uma nova fase, proponha exercícios práticos ao usuário com base no que foi construído.
+Os exercícios devem:
+- Usar o projeto existente como base (não criar do zero)
+- Ter dificuldade progressiva (do mais simples ao mais desafiador)
+- Ser resolvidos pelo usuário — o Claude só ajuda se o usuário pedir
+- Cobrir os conceitos centrais da fase concluída
+
+Só avance para a próxima fase após o usuário concluir os exercícios ou decidir pular.
+
+---
+
 ## Próximos passos (fase 2 — após dominar o básico)
 
 Só avance quando os testes da fase 1 estiverem funcionando e você entender o que cada linha faz.
