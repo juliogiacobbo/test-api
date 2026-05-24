@@ -1,0 +1,32 @@
+# tests.yml — instrui o GitHub Actions a rodar os testes automaticamente
+# Este arquivo fica na pasta .github/workflows/ — o GitHub encontra ele sozinho
+
+name: Testes de API
+
+on:
+  workflow_dispatch:           # permite rodar manualmente pela aba Actions do GitHub
+
+  # schedule:
+  #   - cron: '0 8 * * *'     # todo dia às 8h UTC (5h horário de Brasília)
+  #                            # descomente as duas linhas acima para ativar
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest     # roda numa máquina Linux temporária criada pelo GitHub
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4         # copia o repositório para a máquina
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'          # instala a mesma versão que usamos localmente
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt    # instala httpx, pytest, etc.
+
+      - name: Rodar os testes
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}  # lê a variável configurada no GitHub
+        run: pytest -v
