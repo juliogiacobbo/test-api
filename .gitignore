@@ -1,0 +1,13 @@
+# Variáveis de ambiente — contém dados sensíveis como URLs e tokens
+# NUNCA deve ir pro GitHub
+.env
+
+# Pasta criada pelo Python ao instalar dependências localmente
+# Não precisa versionar — o requirements.txt já garante a reprodução
+venv/
+.venv/
+
+# Arquivos gerados pelo Pytest durante a execução dos testes
+# São temporários e não fazem parte do código
+.pytest_cache/
+__pycache__/
